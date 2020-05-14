@@ -40,8 +40,8 @@ class CommissionEmployee(SalaryEmployee):
 
 class Manager(SalaryEmployee):
 
-    def work(self, motivates, hours):
-        print(f"Says to their employees '{motivates}' {hours} any time they need a boost")
+    def work(self, hours):
+        print(f"Yells at their employees {hours} any time they need a boost")
 
 class Secretary(SalaryEmployee):
 
