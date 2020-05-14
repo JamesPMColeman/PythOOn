@@ -51,7 +51,6 @@ class TestEmployees(unittest.TestCase):
         self.assertEqual(result, 1350)
 
     def test_Manager(self):
-        manger_says = 'That\'s what she said.'
         test_employee = employees.Manager(self.id, self.name, self.salary)
         test_employee.work(self.hours)
 
