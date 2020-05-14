@@ -4,50 +4,58 @@ from program import employees
 
 class TestEmployees(unittest.TestCase):
 
-    def test_Employee(self):
-        id = 1
-        name = 'Tom Hanks'
-        test_employee = employees.Employee(id, name)
+    id = 42
+    name = 'Michael Scott'
+    hours = 20
+    salary = 1000
+    pay_rate = 25
+    commission = 350
 
-        self.assertEqual(test_employee.id, id)
-        self.assertEqual(test_employee.name, name)
+    def test_Employee(self):
+        test_employee = employees.Employee(self.id, self.name)
+
+        self.assertEqual(test_employee.id, self.id)
+        self.assertEqual(test_employee.name, self.name)
 
     def test_SalaryEmployee(self):
-        id = 2
-        name = 'Selma Hyak'
-        salary = 1000
-        test_employee = employees.SalaryEmployee(id, name, salary)
+        test_employee = employees.SalaryEmployee(self.id, self.name, self.salary)
         result = test_employee.calculate_payroll()
 
-        self.assertEqual(test_employee.id, id)
-        self.assertEqual(test_employee.name, name)
-        self.assertEqual(test_employee.weekly_salary, salary)
-        self.assertEqual(result, salary)
+        self.assertEqual(test_employee.id, self.id)
+        self.assertEqual(test_employee.name, self.name)
+        self.assertEqual(test_employee.weekly_salary, self.salary)
+        self.assertEqual(result, self.salary)
 
     def test_HourlyEmployee(self):
-        id = 3
-        name = 'Aurthor C Clark'
-        hours = 20
-        pay_rate = 25
-        test_employee = employees.HourlyEmployee(id, name, hours, pay_rate)
+        
+        test_employee = employees.HourlyEmployee(self.id, self.name, self.hours, self.pay_rate)
         result = test_employee.calculate_payroll()
 
-        self.assertEqual(test_employee.id, id)
-        self.assertEqual(test_employee.name, name)
-        self.assertEqual(test_employee.hours_worked, hours)
-        self.assertEqual(test_employee.hourly_rate, pay_rate)
+        self.assertEqual(test_employee.id, self.id)
+        self.assertEqual(test_employee.name, self.name)
+        self.assertEqual(test_employee.hours_worked, self.hours)
+        self.assertEqual(test_employee.hourly_rate, self.pay_rate)
         self.assertEqual(result, 500)
 
     def test_CommissionEmployee(self):
-        id = 4
-        name = 'Phillip J Fry'
-        salary = 500
-        commission = 350
-        test_employee = employees.CommissionEmployee(id, name, salary, commission)
+        
+        test_employee = employees.CommissionEmployee(self.id, self.name, self.salary, self.commission)
         result = test_employee.calculate_payroll()
 
-        self.assertEqual(test_employee.id, id)
-        self.assertEqual(test_employee.name, name)
-        self.assertEqual(test_employee.weekly_salary, salary)
-        self.assertEqual(test_employee.commission, commission)
-        self.assertEqual(result, 850)
+        self.assertEqual(test_employee.id, self.id)
+        self.assertEqual(test_employee.name, self.name)
+        self.assertEqual(test_employee.weekly_salary, self.salary)
+        self.assertEqual(test_employee.commission, self.commission)
+        self.assertEqual(result, 1350)
+
+    def test_Manager(self):
+        test_employee = employees.Manager(self.id, self.name, self.salary)
+
+    def test_Secretary(self):
+        pass
+
+    def test_SalesPerson(self):
+        pass
+
+    def test_FactoryWorker(self):
+        pass

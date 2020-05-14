@@ -36,3 +36,7 @@ class CommissionEmployee(SalaryEmployee):
 
     def calculate_payroll(self):
         return super().calculate_payroll() + self.commission
+
+
+class Manager(SalaryEmployee):
+    pass
