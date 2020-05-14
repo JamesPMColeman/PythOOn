@@ -9,7 +9,7 @@ class PayrollSystem:
             print('')
 
 
-class Employee:
+class Employee():
 
     def __init__(self, id, name):
         self.id = id
