@@ -1,3 +1,5 @@
+import io
+import sys
 import unittest
 from program import employees
 
@@ -49,13 +51,19 @@ class TestEmployees(unittest.TestCase):
         self.assertEqual(result, 1350)
 
     def test_Manager(self):
+        manger_says = 'That\'s what she said.'
         test_employee = employees.Manager(self.id, self.name, self.salary)
+        test_employee.work(manger_says, self.hours)
 
     def test_Secretary(self):
-        pass
+        test_employee = employees.Secretary(self.id, self.name, self.salary)
+        test_employee.work(self.hours)
 
     def test_SalesPerson(self):
-        pass
+        test_employee = employees.SalesPerson(self.id, self.name, self.salary, self.commission)
+        test_employee.work(self.hours)
 
     def test_FactoryWorker(self):
-        pass
+        test_employee = employees.FactoryWorker(self.id, self.name, self.hours, self.pay_rate)
+        test_employee.work(self.hours)
+        

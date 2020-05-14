@@ -39,4 +39,21 @@ class CommissionEmployee(SalaryEmployee):
 
 
 class Manager(SalaryEmployee):
-    pass
+
+    def work(self, motivates, hours):
+        print(f"Says to their employees '{motivates}' {hours} any time they need a boost")
+
+class Secretary(SalaryEmployee):
+
+    def work(self, hours):
+        print(f'Does paper work and greets visiters  {hours} a day')
+
+class SalesPerson(CommissionEmployee):
+
+    def work(self, hours):
+        print(f'Spends {hours} hours a day on the phone')
+
+class FactoryWorker(HourlyEmployee):
+
+    def work(self, hours):
+        print(f'Prepares products for shipment {hours} a day')
