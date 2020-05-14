@@ -53,7 +53,7 @@ class TestEmployees(unittest.TestCase):
     def test_Manager(self):
         manger_says = 'That\'s what she said.'
         test_employee = employees.Manager(self.id, self.name, self.salary)
-        test_employee.work(manger_says, self.hours)
+        test_employee.work(self.hours)
 
     def test_Secretary(self):
         test_employee = employees.Secretary(self.id, self.name, self.salary)
