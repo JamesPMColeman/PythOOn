@@ -1,3 +1,16 @@
+from hr import (
+    SalaryPolicy,
+    HourlyPolicy,
+    CommissionPolicy
+)
+from productivity import (
+    ManagerRole,
+    SecretaryRole,
+    SalesRole,
+    FactoryRole,
+)
+
+
 class Employee():
 
     def __init__(self, id, name):
@@ -5,65 +18,36 @@ class Employee():
         self.name = name
 
 
-class SalaryEmployee(Employee):
+class Manager(Employee, ManagerRole, SalaryPolicy):
 
     def __init__(self, id, name, weekly_salary):
+        SalaryPolicy.__init__(self, weekly_salary)
         super().__init__(id, name)
-        self.weekly_salary = weekly_salary
-
-    def calculate_payroll(self):
-        return self.weekly_salary
 
 
-class HourlyEmployee(Employee):
+class Secretary(Employee, SecretaryRole, SalaryPolicy):
 
-    def __init__(self, id, name, hours_worked, hourly_rate):
+    def __init__(self, id, name, weekly_salary):
+        SalaryPolicy.__init__(self, weekly_salary)
         super().__init__(id, name)
-        self.hours_worked = hours_worked
-        self.hourly_rate = hourly_rate
-
-    def calculate_payroll(self):
-        return self.hours_worked * self.hourly_rate
 
 
-class CommissionEmployee(SalaryEmployee):
+class SalesPerson(Employee, SalesRole, CommissionPolicy):
 
     def __init__(self, id, name, weekly_salary, commission):
-        super().__init__(id, name, weekly_salary)
-        self.commission = commission
-
-    def calculate_payroll(self):
-        return super().calculate_payroll() + self.commission
+        CommissionPolicy.__init__(self, weekly_salary, commission)
+        super().__init__(id, name)
 
 
-class Manager(SalaryEmployee):
+class FactoryWorker(Employee, FactoryRole, HourlyPolicy):
 
-    def work(self, hours):
-        print(f"Yells at their employees {hours} any time they need a boost")
-
-
-class Secretary(SalaryEmployee):
-
-    def work(self, hours):
-        print(f'Does paper work and greets visiters  {hours} a day')
+    def __init__(self, id, name, hours, hourly_rate):
+        HourlyPolicy.__init__(self, hours, hourly_rate)
+        super().__init__(id, name)
 
 
-class SalesPerson(CommissionEmployee):
+class TemporarySecretary(Employee, SecretaryRole, HourlyPolicy):
 
-    def work(self, hours):
-        print(f'Spends {hours} hours a day on the phone')
-
-
-class FactoryWorker(HourlyEmployee):
-
-    def work(self, hours):
-        print(f'Prepares products for shipment {hours} a day')
-
-
-class TemporarySecretary(Secretary, HourlyEmployee):
-
-    def __init__(self, id, name, hours_worked, hourly_rate):
-        HourlyEmployee.__init__(self, id, name, hours_worked, hourly_rate)
-
-    def calculate_payroll(self):
-        return HourlyEmployee.calculate_payroll(self)
+    def __init__(self, id, name, hours, hourly_rate):
+        HourlyPolicy.__init__(self, hours, hourly_rate)
+        super().__init__(id, name)
