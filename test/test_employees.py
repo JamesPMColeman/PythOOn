@@ -19,37 +19,6 @@ class TestEmployees(unittest.TestCase):
         self.assertEqual(test_employee.id, self.id)
         self.assertEqual(test_employee.name, self.name)
 
-    def test_SalaryEmployee(self):
-        test_employee = employees.SalaryEmployee(self.id, self.name, self.salary)
-        result = test_employee.calculate_payroll()
-
-        self.assertEqual(test_employee.id, self.id)
-        self.assertEqual(test_employee.name, self.name)
-        self.assertEqual(test_employee.weekly_salary, self.salary)
-        self.assertEqual(result, self.salary)
-
-    def test_HourlyEmployee(self):
-        
-        test_employee = employees.HourlyEmployee(self.id, self.name, self.hours, self.pay_rate)
-        result = test_employee.calculate_payroll()
-
-        self.assertEqual(test_employee.id, self.id)
-        self.assertEqual(test_employee.name, self.name)
-        self.assertEqual(test_employee.hours_worked, self.hours)
-        self.assertEqual(test_employee.hourly_rate, self.pay_rate)
-        self.assertEqual(result, 500)
-
-    def test_CommissionEmployee(self):
-        
-        test_employee = employees.CommissionEmployee(self.id, self.name, self.salary, self.commission)
-        result = test_employee.calculate_payroll()
-
-        self.assertEqual(test_employee.id, self.id)
-        self.assertEqual(test_employee.name, self.name)
-        self.assertEqual(test_employee.weekly_salary, self.salary)
-        self.assertEqual(test_employee.commission, self.commission)
-        self.assertEqual(result, 1350)
-
     def test_Manager(self):
         test_employee = employees.Manager(self.id, self.name, self.salary)
         test_employee.work(self.hours)

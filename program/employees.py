@@ -1,9 +1,9 @@
-from hr import (
+from program.hr import (
     SalaryPolicy,
     HourlyPolicy,
     CommissionPolicy
 )
-from productivity import (
+from program.productivity import (
     ManagerRole,
     SecretaryRole,
     SalesRole,
