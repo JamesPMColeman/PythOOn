@@ -16,3 +16,4 @@ script:
 
 after_success:
   - coverage report
+  - sleep 5
