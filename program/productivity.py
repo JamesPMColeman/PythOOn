@@ -1,18 +1,19 @@
 class ProductivitySystem:
 
-	def track(self, employees, hours):
-		print('Tracking Employee Productivity')
-		print('==============================')
-		for employee in employees:
-			result = employee.work(hours)
-			print(f'{employee.name}: {result}')
-		print('')
+    def track(self, employees, hours):
+        print('Tracking Employee Productivity')
+        print('==============================')
+        for employee in employees:
+            result = employee.work(hours)
+            print(f'{employee.name}: {result}')
+        print('')
 
 
 class ManagerRole:
 
     def work(self, hours):
         return f"Yells at their employees {hours} any time they need a boost"
+
 
 class SecretaryRole:
 

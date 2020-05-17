@@ -42,4 +42,5 @@ class TestHr(unittest.TestCase):
 
     def test_TemporarySecretary(self):
         test_employee = employees.TemporarySecretary(self.id, self.name, self.hours, self.pay_rate)
-        result = test_employee.calculate_payroll()
+        test_employee.calculate_payroll()
+        
