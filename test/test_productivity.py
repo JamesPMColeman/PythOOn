@@ -2,13 +2,21 @@ import unittest
 from program import employees, productivity
 
 
-class TestProductivity(unittest.TestCase):
+class TestProductivitySystem(unittest.TestCase):
 
-    salary_employee = employees.Manager(1, 'Michael Scott', 75000)
-    hourly_employee = employees.FactoryWorker(2, 'Devon White', 35, 23.40)
-    commis_employee = employees.SalesPerson(3, 'Jim Halpert', 24000, 545)
-    staff = [salary_employee, hourly_employee, commis_employee]
+    hours = 38
+    productivity_system = productivity.ProductivitySystem()
+    employee_database = employees.EmployeeDatabase()
+    employee_list = employee_database.employees()
 
-    def test_ProductivitySystem(self):
-        hours_worked = productivity.ProductivitySystem()
-        hours_worked.track(self.staff, 35)
+    def test_get_role(self):
+        role = self.productivity_system.get_role('manager')
+        self.assertTrue(isinstance(role, productivity.ManagerRole))
+
+    def test_get_role_bad_input(self):
+        with self.assertRaises(ValueError):
+            self.productivity_system.get_role('')
+
+    def test_track(self):
+        result = []
+        result.append(self.productivity_system.track(self.employee_list, self.hours))

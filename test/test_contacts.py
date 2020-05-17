@@ -1,8 +1,18 @@
 import unittest
-from program.contacts import Address
+from program.contacts import Address, AddressBook 
 
 
 class TestAddress(unittest.TestCase):
+
+	book = AddressBook()
+
+	def test_get_address(self):
+		result = self.book.get_address(1)
+		self.assertTrue(isinstance(result, Address))
+
+	def test_get_address_with_bad_imput(self):
+		with self.assertRaises(ValueError):
+			self.book.get_address(0)
 
 	def test_address(self):
 		street = '234 First st.'
