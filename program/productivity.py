@@ -2,7 +2,7 @@ class ProductivitySystem:
 
     def __init__(self):
         self._roles = {
-        'manger': ManagerRole,
+        'manager': ManagerRole,
         'secretary': SecretaryRole,
         'sales': SalesRole,
         'factory': FactoryRole,
@@ -11,7 +11,7 @@ class ProductivitySystem:
     def get_role(self, role_id):
         role_type = self._roles.get(role_id)
         if not role_type: 
-            raise ValueError('invalid role_id')
+            raise ValueError('invalid role_id: ' + role_id)
         return role_type()
 
     def track(self, employees, hours):

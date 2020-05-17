@@ -5,8 +5,8 @@ class PayrollSystem:
         1: SalaryPolicy(1000),
         2: SalaryPolicy(950),
         3: CommissionPolicy(600, 100),
-        4: HourlyPolicy(40, 22),
-        5: HourlyPolicy(35, 16),
+        4: HourlyPolicy(22),
+        5: HourlyPolicy(16),
     }
 
     def get_policy(self, employee_id):
@@ -39,6 +39,7 @@ class PayrollPolicy:
 class SalaryPolicy(PayrollPolicy):
 
     def __init__(self, weekly_salary):
+        super().__init__()
         self.weekly_salary = weekly_salary
 
     def calculate_payroll(self):
@@ -47,8 +48,8 @@ class SalaryPolicy(PayrollPolicy):
 
 class HourlyPolicy(PayrollPolicy):
 
-    def __init__(self, hours_worked, hourly_rate):
-        self.hours_worked = hours_worked
+    def __init__(self, hourly_rate):
+        super().__init__()
         self.hourly_rate = hourly_rate
 
     def calculate_payroll(self):
@@ -63,7 +64,7 @@ class CommissionPolicy(SalaryPolicy):
 
     def commission(self):
         sales = self.hours_worked / 5
-        return sales * commission_per_sale
+        return sales * self.commission_per_sale
 
     def calculate_payroll(self):
-        return super().calculate_payroll() + self.commission
+        return super().calculate_payroll() + self.commission()
