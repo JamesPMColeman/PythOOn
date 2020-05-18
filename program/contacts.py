@@ -1,7 +1,7 @@
 from program.representations import DictionaryMixin
 
 
-class AddressBook:
+class _AddressBook:
     """Class AddressBook. program.contacts"""
     def __init__(self):
         self._employee_address = {
@@ -12,7 +12,7 @@ class AddressBook:
             5: Address('8849 Eighth st.', 'Scranton', 'PA', '20903'),
         }
         
-    def get_address(self, employee_id):
+    def _get_address(self, employee_id):
         address = self._employee_address.get(employee_id)
         if not address:
             raise ValueError('invalad employee id')
@@ -34,3 +34,11 @@ class Address(DictionaryMixin):
             address.append(self.street2)
         address.append(f'{self.city}, {self.state} {self.zipcode}')
         return '\n'.join(address)
+
+
+_address_book = _AddressBook()
+
+
+# Public interface
+def get_address(employee_id):
+    return _address_book._get_address(employee_id)
