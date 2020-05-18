@@ -17,7 +17,7 @@ class TestHr(unittest.TestCase):
     def test_get_policy(self):
         result = []
         for e in self.employee_list:
-            result.append(get_policy(e.id))
+            result.append(get_policy(e.identification))
         self.assertIsNotNone(result)
 
     def test_get_policy_with_bad_input(self):
