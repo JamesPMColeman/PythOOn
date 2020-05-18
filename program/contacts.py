@@ -11,7 +11,7 @@ class _AddressBook:
             4: Address('654 Haven Av', 'Scranton', 'PA', '20931'),
             5: Address('8849 Eighth st.', 'Scranton', 'PA', '20903'),
         }
-        
+  
     def _get_address(self, employee_id):
         address = self._employee_address.get(employee_id)
         if not address:

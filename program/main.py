@@ -1,3 +1,4 @@
+"""Office control center."""
 import json
 from hr import calculate_payroll, DisabilityPolicy
 from employees import employee_database, Employee
@@ -5,7 +6,8 @@ from productivity import track
 
 
 def print_dictionary(employee_as_dict):
-	print(json.dumps(employee_as_dict, indent=2))
+    """Print a dictionary representation of the employee."""
+    print(json.dumps(employee_as_dict, indent=2))
 
 employees = employee_database.employees()
 
