@@ -1,5 +1,5 @@
 import json
-from hr import calculate_payroll
+from hr import calculate_payroll, DisabilityPolicy
 from employees import employee_database, Employee
 from productivity import track
 
@@ -8,6 +8,10 @@ def print_dictionary(employee_as_dict):
 	print(json.dumps(employee_as_dict, indent=2))
 
 employees = employee_database.employees()
+
+sales_employee = employees[2]
+disability = DisabilityPolicy()
+sales_employee.apply_payroll_policy(disability)
 
 track(employees, 35)
 calculate_payroll(employees)
