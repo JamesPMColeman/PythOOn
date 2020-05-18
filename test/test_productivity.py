@@ -1,22 +1,28 @@
 import unittest
-from program import employees, productivity
+from program.productivity import (
+    productivity_system,
+    get_role,
+    track,
+    ManagerRole,
+)
+from program.employees import _EmployeeDatabase
 
 
 class TestProductivitySystem(unittest.TestCase):
 
     hours = 38
-    productivity_system = productivity._ProductivitySystem()
-    employee_database = employees._EmployeeDatabase()
+    productivity = productivity_system
+    employee_database = _EmployeeDatabase()
     employee_list = employee_database.employees()
 
     def test_get_role(self):
-        role = self.productivity_system.get_role('manager')
-        self.assertTrue(isinstance(role, productivity.ManagerRole))
+        role = get_role('manager')
+        self.assertTrue(isinstance(role, ManagerRole))
 
     def test_get_role_bad_input(self):
         with self.assertRaises(ValueError):
-            self.productivity_system.get_role('')
+            get_role('')
 
     def test_track(self):
         result = []
-        result.append(self.productivity_system.track(self.employee_list, self.hours))
+        result.append(track(self.employee_list, self.hours))

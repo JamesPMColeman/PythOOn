@@ -6,13 +6,13 @@ class TestAddress(unittest.TestCase):
 
 	book = _AddressBook()
 
-	def test_get_address(self):
-		result = self.book.get_address(1)
+	def test__get_address(self):
+		result = self.book._get_address(1)
 		self.assertTrue(isinstance(result, Address))
 
-	def test_get_address_with_bad_imput(self):
+	def test__get_address_with_bad_imput(self):
 		with self.assertRaises(ValueError):
-			self.book.get_address(0)
+			self.book._get_address(0)
 
 	def test_address(self):
 		street = '234 First st.'
