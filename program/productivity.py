@@ -1,4 +1,4 @@
-class ProductivitySystem:
+class _ProductivitySystem:
 
     def __init__(self):
         self._roles = {
@@ -8,13 +8,13 @@ class ProductivitySystem:
         'factory': FactoryRole,
     }
 
-    def get_role(self, role_id):
+    def _get_role(self, role_id):
         role_type = self._roles.get(role_id)
         if not role_type: 
             raise ValueError('invalid role_id: ' + role_id)
         return role_type()
 
-    def track(self, employees, hours):
+    def _track(self, employees, hours):
         print('Tracking Employee Productivity')
         print('==============================')
         for employee in employees:
@@ -44,3 +44,14 @@ class FactoryRole:
 
     def work(self, hours):
         return f'Prepares products for shipment {hours} a day'
+
+
+_productivity_system = _ProductivitySystem()
+
+
+def get_role(role_id):
+    return _productivity_system._get_role(role_id)
+
+
+def track(employees, hours):
+    _productivity_system._track(employees, hours)
