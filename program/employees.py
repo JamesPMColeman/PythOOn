@@ -1,44 +1,39 @@
-from program.hr import PayrollSystem
-from program.contacts import AddressBook
-from program.productivity import ProductivitySystem
+from program.hr import get_policy
+from program.contacts import get_address
+from program.productivity import get_role
 from program.representations import DictionaryMixin
 
-class EmployeeDatabase:
+class _EmployeeDatabase:
 
     def __init__(self):
-        self._employees = [
-            {
-                'id': 1,
+        self._employees = {
+            1: {
                 'name': 'Michae Scott',
                 'role': 'manager',
             },
-            {
-                'id': 2,
+            2: {
                 'name': 'Pam Beasly',
                 'role': 'secretary',
             },
-            {
-                'id': 3,
+            3: {
                 'name': 'Andy Bernard',
                 'role': 'sales',
             },
-            {
-                'id': 4,
+            4: {
                 'name': 'Roy Anderson',
                 'role': 'factory',
             },
-            {
-                'id': 5,
+            5: {
                 'name': 'Ryan',
                 'role': 'secretary',
             },
-        ]
+        }
         self.productivity = ProductivitySystem()
         self.employee_address = AddressBook()
         self.payroll = PayrollSystem()
 
     def employees(self):
-        return [self._create_employee(**data) for data in self._employees]
+        return [Employee(id_) for id_ in sorted(self._employees)]
      
     def _create_employee(self, id, name, role):
         address = self.employee_address.get_address(id)
