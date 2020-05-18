@@ -1,10 +1,10 @@
 import unittest
-from program.employees import Employee, EmployeeDatabase
+from program.employees import Employee, _EmployeeDatabase
 
 
 class TestEmployees(unittest.TestCase):
 
-    employee_database = EmployeeDatabase()
+    employee_database = _EmployeeDatabase()
     employee_list = employee_database.employees()
         
     def test_employees(self):

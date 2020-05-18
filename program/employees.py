@@ -1,6 +1,6 @@
-from program.hr import get_policy
-from program.contacts import get_address
-from program.productivity import get_role
+from program.hr import get_policy, payroll_system
+from program.contacts import get_address, address_book
+from program.productivity import get_role, productivity_system
 from program.representations import DictionaryMixin
 
 class _EmployeeDatabase:
@@ -28,28 +28,26 @@ class _EmployeeDatabase:
                 'role': 'secretary',
             },
         }
-        self.productivity = ProductivitySystem()
-        self.employee_address = AddressBook()
-        self.payroll = PayrollSystem()
 
     def employees(self):
         return [Employee(id_) for id_ in sorted(self._employees)]
      
-    def _create_employee(self, id, name, role):
-        address = self.employee_address.get_address(id)
-        employee_roll = self.productivity.get_role(role)
-        payroll_policy = self.payroll.get_policy(id)
-        return Employee(id, name, address, employee_roll, payroll_policy)
+    def get_employee_info(self, employee_id):
+        info = self._employees.get(employee_id)
+        if not info:
+            raise ValueError('invalid employee id')
+        return info
 
 
 class Employee(DictionaryMixin):
 
-    def __init__(self, id, name, address, role, payroll):
+    def __init__(self, id):
         self.id = id
-        self.name = name
-        self.address = address
-        self._payroll = payroll
-        self._employee_role = role
+        employee_info = employee_database.get_employee_info(id)
+        self.name = employee_info.get('name')
+        self.address = get_address(self.id)
+        self._payroll = get_policy(self.id)
+        self._employee_role = get_role(employee_info.get('role'))
 
     def work(self, hours):
         tasks = self._employee_role.work(hours)
@@ -60,4 +58,7 @@ class Employee(DictionaryMixin):
 
     def calculate_payroll(self):
         return self._payroll.calculate_payroll() 
+
+
+employee_database = _EmployeeDatabase()
 

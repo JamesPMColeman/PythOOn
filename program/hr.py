@@ -16,8 +16,8 @@ class _PayrollSystem:
         return policy
 
     def _calculate_payroll(self, employees):
-        print('Claculating Payroll')
-        print('===================')
+        print('Calaculating Payroll')
+        print('====================')
         for employee in employees:
             print(f'Payroll for: {employee.id} - {employee.name}')
             print(f'- Check Amount: {employee.calculate_payroll()}')
@@ -70,12 +70,12 @@ class CommissionPolicy(SalaryPolicy):
         return super().calculate_payroll() + self.commission()
 
 
-_payroll_system = _PayrollSystem()
+payroll_system = _PayrollSystem()
 
-
+# Public interface
 def get_policy(employee_id):
-    return _payroll_system._get_policy(employee_id)
+    return payroll_system._get_policy(employee_id)
 
 
 def calculate_payroll(employees):
-    return _payroll_system._calculate_payroll(employees)
+    return payroll_system._calculate_payroll(employees)

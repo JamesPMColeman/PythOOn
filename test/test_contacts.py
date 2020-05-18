@@ -1,10 +1,10 @@
 import unittest
-from program.contacts import Address, AddressBook 
+from program.contacts import Address, _AddressBook 
 
 
 class TestAddress(unittest.TestCase):
 
-	book = AddressBook()
+	book = _AddressBook()
 
 	def test_get_address(self):
 		result = self.book.get_address(1)

@@ -36,9 +36,9 @@ class Address(DictionaryMixin):
         return '\n'.join(address)
 
 
-_address_book = _AddressBook()
+address_book = _AddressBook()
 
 
 # Public interface
 def get_address(employee_id):
-    return _address_book._get_address(employee_id)
+    return address_book._get_address(employee_id)

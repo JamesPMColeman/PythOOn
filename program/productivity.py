@@ -46,12 +46,13 @@ class FactoryRole:
         return f'Prepares products for shipment {hours} a day'
 
 
-_productivity_system = _ProductivitySystem()
+productivity_system = _ProductivitySystem()
 
 
+#Public interface
 def get_role(role_id):
-    return _productivity_system._get_role(role_id)
+    return productivity_system._get_role(role_id)
 
 
 def track(employees, hours):
-    _productivity_system._track(employees, hours)
+    productivity_system._track(employees, hours)

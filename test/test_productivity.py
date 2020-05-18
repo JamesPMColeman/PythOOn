@@ -5,8 +5,8 @@ from program import employees, productivity
 class TestProductivitySystem(unittest.TestCase):
 
     hours = 38
-    productivity_system = productivity.ProductivitySystem()
-    employee_database = employees.EmployeeDatabase()
+    productivity_system = productivity._ProductivitySystem()
+    employee_database = employees._EmployeeDatabase()
     employee_list = employee_database.employees()
 
     def test_get_role(self):

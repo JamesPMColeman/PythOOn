@@ -4,9 +4,9 @@ from program import hr, employees, contacts
 
 class TestHr(unittest.TestCase):
 
-    employee_database = employees.EmployeeDatabase()
+    employee_database = employees._EmployeeDatabase()
     employee_list = employee_database.employees()
-    system = hr.PayrollSystem()
+    system = hr._PayrollSystem()
 
     def test_get_policy(self):
         result = []
