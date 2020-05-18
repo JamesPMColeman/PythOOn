@@ -1,3 +1,6 @@
+from program.representations import DictionaryMixin
+
+
 class AddressBook:
     """Class AddressBook. program.contacts"""
     def __init__(self):
@@ -16,7 +19,7 @@ class AddressBook:
         return address
 
 
-class Address:
+class Address(DictionaryMixin):
 
     def __init__(self, street, city, state, zipcode, street2=''):
         self.street = street

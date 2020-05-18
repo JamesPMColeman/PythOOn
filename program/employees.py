@@ -1,6 +1,7 @@
 from program.hr import PayrollSystem
 from program.contacts import AddressBook
 from program.productivity import ProductivitySystem
+from program.representations import DictionaryMixin
 
 class EmployeeDatabase:
 
@@ -46,22 +47,22 @@ class EmployeeDatabase:
         return Employee(id, name, address, employee_roll, payroll_policy)
 
 
-class Employee():
+class Employee(DictionaryMixin):
 
     def __init__(self, id, name, address, role, payroll):
         self.id = id
         self.name = name
         self.address = address
-        self.payroll = payroll
-        self.employee_role = role
+        self._payroll = payroll
+        self._employee_role = role
 
     def work(self, hours):
-        tasks = self.employee_role.work(hours)
+        tasks = self._employee_role.work(hours)
         print(f'Employee {self.id} - {self.name}:')
         print(f'- {tasks}')
         print('')
-        self.payroll.track_work(hours)
+        self._payroll.track_work(hours)
 
     def calculate_payroll(self):
-        return self.payroll.calculate_payroll() 
+        return self._payroll.calculate_payroll() 
 
