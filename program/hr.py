@@ -1,4 +1,4 @@
-class PayrollSystem:
+class _PayrollSystem:
 
     def __init__(self):
         self._employee_policies = {
@@ -9,13 +9,13 @@ class PayrollSystem:
         5: HourlyPolicy(16),
     }
 
-    def get_policy(self, employee_id):
+    def _get_policy(self, employee_id):
         policy = self._employee_policies.get(employee_id)
         if not policy:
             raise ValueError('invalid employee_id')
         return policy
 
-    def calculate_payroll(self, employees):
+    def _calculate_payroll(self, employees):
         print('Claculating Payroll')
         print('===================')
         for employee in employees:
@@ -68,3 +68,14 @@ class CommissionPolicy(SalaryPolicy):
 
     def calculate_payroll(self):
         return super().calculate_payroll() + self.commission()
+
+
+_payroll_system = _PayrollSystem()
+
+
+def get_policy(employee_id):
+    return _payroll_system._get_policy(employee_id)
+
+
+def calculate_payroll(employees):
+    return _payroll_system._calculate_payroll(employees)
